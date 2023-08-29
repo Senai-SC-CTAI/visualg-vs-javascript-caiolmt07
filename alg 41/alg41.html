@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Passeio de Balão</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #1d0808;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+.container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 400px;
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+label {
+  margin-top: 10px;
+}
+
+
+input {
+  padding: 5px;
+  margin-top: 5px;
+}
+
+
+button {
+  margin-top: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+#image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+
+.image {
+  width: 300px;
+  margin: 10px;
+  border: 3px solid rgb(20, 0, 73);
+  box-shadow: 0px 0px 10px rgb(20, 0, 73);
+}
+
+
+#result {
+  margin-top: 20px;
+}
+
+
+.hidden {
+  display: none;
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Passeio de Balão</h1>
+    <form id="calculator-form">
+      <label for="people">Quantas pessoas vão no passeio?</label>
+      <input type="number" id="people" required>
+     
+      <label for="duration">Quantos minutos irá durar o passeio?</label>
+      <input type="number" id="duration" required>
+     
+      <button type="submit">Calcular</button>
+    </form>
+   
+    <div id="image-container">
+      <img src="imagem 1.jpeg" alt="Sua imagem 1" class="image">
+      <img src="imagem 2.jpeg" alt="Sua imagem 2" class="image">
+      <img src="imagem 3.jpeg" alt="Sua imagem 3" class="image">
+    </div>
+
+
+    <div id="result" class="hidden">
+      <h2>Total cobrado pelo passeio:</h2>
+      <p id="total">R$ 0</p>
+    </div>
+  </div>
+ 
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("calculator-form");
+  const resultDiv = document.getElementById("result");
+  const totalParagraph = document.getElementById("total");
+
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+
+    const people = parseFloat(document.getElementById("people").value);
+    const duration = parseFloat(document.getElementById("duration").value);
+
+
+    const gasNecessary = (duration / 5) * 10;
+    const gasCost = gasNecessary * 15;
+    const totalCost = gasCost + people * 20;
+
+
+    totalParagraph.textContent = `R$ ${totalCost.toFixed(2)}`;
+    resultDiv.classList.remove("hidden");
+  });
+});
+
+
+  </script>
+</body>
+</html>
+
+
+
